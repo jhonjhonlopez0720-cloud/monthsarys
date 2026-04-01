@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Monthsary! 🌸💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            z-index: 10;
+            max-width: 600px;
+            padding: 20px;
+            animation: fadeInUp 2s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        p {
+            font-size: 1.5em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle at 30% 30%, #ff69b4, #ff1493, #c71585);
+            border-radius: 50% 0 70% 0;
+            animation: bloom 3s ease-in-out infinite alternate;
+        }
+        .flower::before, .flower::after {
+            content: '';
+            position: absolute;
+            background: inherit;
+            border-radius: inherit;
+        }
+        .flower::before {
+            width: 30px;
+            height: 30px;
+            top: -15px;
+            left: 10px;
+            transform: rotate(120deg);
+        }
+        .flower::after {
+            width: 30px;
+            height: 30px;
+            top: -15px;
+            right: 10px;
+            transform: rotate(240deg);
+        }
+        @keyframes bloom {
+            0% { transform: scale(0.8) rotate(0deg); opacity: 0.7; }
+            100% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+        .sakura {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(120deg, rgba(255,182,193,0.9), rgba(255,197,208,0.9));
+            border-radius: 50% 0;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌸 Happy Monthsary, My Love! 💕</h1>
+        <p>It's been another amazing month with you. Your smile lights up my world, and every moment together feels like magic. Thank you for being my everything. I love you more each day! ❤️</p>
+        <p>Click anywhere to make more flowers bloom! 🎉</p>
+    </div>
+
+    <script>
+        // Falling sakura petals animation [web:2]
+        function createPetals() {
+            const petal = document.createElement('div');
+            petal.className = 'sakura';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            petal.style.animationDelay = Math.random() * 5 + 's';
+            petal.style.opacity = Math.random() * 0.5 + 0.5;
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), 10000);
+        }
+        setInterval(createPetals, 300);
+
+        // Surprise blooming flowers on click
+        document.addEventListener('click', (e) => {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.style.left = e.clientX + 'px';
+            flower.style.top = e.clientY + 'px';
+            document.body.appendChild(flower);
+            setTimeout(() => flower.remove(), 3000);
+        });
+
+        // Initial flowers for surprise effect
+        setTimeout(() => {
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createPetals, i * 200);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
