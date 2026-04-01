@@ -1,139 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Monthsary! 🌸💕</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .container {
-            z-index: 10;
-            max-width: 600px;
-            padding: 20px;
-            animation: fadeInUp 2s ease-out;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        p {
-            font-size: 1.5em;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-        .flower {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background: radial-gradient(circle at 30% 30%, #ff69b4, #ff1493, #c71585);
-            border-radius: 50% 0 70% 0;
-            animation: bloom 3s ease-in-out infinite alternate;
-        }
-        .flower::before, .flower::after {
-            content: '';
-            position: absolute;
-            background: inherit;
-            border-radius: inherit;
-        }
-        .flower::before {
-            width: 30px;
-            height: 30px;
-            top: -15px;
-            left: 10px;
-            transform: rotate(120deg);
-        }
-        .flower::after {
-            width: 30px;
-            height: 30px;
-            top: -15px;
-            right: 10px;
-            transform: rotate(240deg);
-        }
-        @keyframes bloom {
-            0% { transform: scale(0.8) rotate(0deg); opacity: 0.7; }
-            100% { transform: scale(1.2) rotate(180deg); opacity: 1; }
-        }
-        .sakura {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: linear-gradient(120deg, rgba(255,182,193,0.9), rgba(255,197,208,0.9));
-            border-radius: 50% 0;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(720deg);
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #1a1a2e, #0f0f1a);
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    color: white;
+}
+
+/* Container */
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Bouquet */
+.bouquet {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+/* Tulip */
+.tulip {
+    position: relative;
+    width: 60px;
+    height: 160px;
+    cursor: pointer;
+}
+
+/* Stem */
+.stem {
+    position: absolute;
+    width: 6px;
+    height: 90px;
+    background: #2ecc71;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Leaves */
+.leaf {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    background: #27ae60;
+    border-radius: 50%;
+}
+
+.leaf.left {
+    bottom: 50px;
+    left: 5px;
+    transform: rotate(-30deg);
+}
+
+.leaf.right {
+    bottom: 65px;
+    right: 5px;
+    transform: rotate(30deg);
+}
+
+/* Petals */
+.petal {
+    position: absolute;
+    width: 35px;
+    height: 50px;
+    background: #ff4d6d;
+    border-radius: 50% 50% 0 0;
+    top: 10px;
+    left: 50%;
+    transform-origin: bottom center;
+    transform: translateX(-50%) scaleY(0.2);
+    transition: 1.2s ease;
+    box-shadow: 0 0 10px rgba(255,77,109,0.6);
+}
+
+.petal.left {
+    transform: translateX(-50%) rotate(-20deg) scaleY(0.2);
+}
+
+.petal.right {
+    transform: translateX(-50%) rotate(20deg) scaleY(0.2);
+}
+
+/* Bloom */
+.bloom .petal {
+    transform: translateX(-50%) scaleY(1);
+}
+
+.bloom .petal.left {
+    transform: translateX(-50%) rotate(-30deg) scaleY(1);
+}
+
+.bloom .petal.right {
+    transform: translateX(-50%) rotate(30deg) scaleY(1);
+}
+
+/* Message */
+.message {
+    margin-top: 25px;
+    font-size: 16px;
+    opacity: 0;
+    transition: 2s;
+    line-height: 1.5;
+}
+
+.show {
+    opacity: 1;
+}
+
+/* Button */
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #ff4d6d;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Hearts */
+.heart {
+    position: absolute;
+    font-size: 18px;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-800px);
+        opacity: 0;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .tulip {
+        width: 50px;
+        height: 140px;
+    }
+
+    .petal {
+        width: 30px;
+        height: 45px;
+    }
+
+    .message {
+        font-size: 14px;
+    }
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>🌸 Happy Monthsary, My Love! 💕</h1>
-        <p>It's been another amazing month with you. Your smile lights up my world, and every moment together feels like magic. Thank you for being my everything. I love you more each day! ❤️</p>
-        <p>Click anywhere to make more flowers bloom! 🎉</p>
+
+<div class="container">
+
+    <div class="bouquet" id="bouquet">
+        <!-- 5 Tulips -->
+        <div class="tulip"></div>
+        <div class="tulip"></div>
+        <div class="tulip"></div>
+        <div class="tulip"></div>
+        <div class="tulip"></div>
     </div>
 
-    <script>
-        // Falling sakura petals animation [web:2]
-        function createPetals() {
-            const petal = document.createElement('div');
-            petal.className = 'sakura';
-            petal.style.left = Math.random() * 100 + 'vw';
-            petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
-            petal.style.animationDelay = Math.random() * 5 + 's';
-            petal.style.opacity = Math.random() * 0.5 + 0.5;
-            document.body.appendChild(petal);
-            setTimeout(() => petal.remove(), 10000);
-        }
-        setInterval(createPetals, 300);
+    <button onclick="startExperience()">Tap mo 'to 💖</button>
 
-        // Surprise blooming flowers on click
-        document.addEventListener('click', (e) => {
-            const flower = document.createElement('div');
-            flower.className = 'flower';
-            flower.style.left = e.clientX + 'px';
-            flower.style.top = e.clientY + 'px';
-            document.body.appendChild(flower);
-            setTimeout(() => flower.remove(), 3000);
-        });
+    <div class="message" id="message">
+        Hi love 🥺💖<br><br>
+        Happy monthsary sa atin hehe<br><br>
 
-        // Initial flowers for surprise effect
+        Hindi man ako perfect (medyo makulit talaga HAHAHA),
+        pero promise ikaw lang talaga gusto ko araw-araw 😌<br><br>
+
+        Thank you kasi lagi kang nandyan,
+        sa mga good days at lalo na sa mga bad days ko.<br><br>
+
+        Parang mga bulaklak na 'to 🌷<br>
+        sabay-sabay nag bloom…<br>
+        ganun din feelings ko sayo — lalo lang lumalalim habang tumatagal.<br><br>
+
+        Ikaw pa rin, at ikaw lang palagi ❤️<br><br>
+
+        I love you sobra 💞
+    </div>
+
+</div>
+
+<!-- Hidden YouTube Audio -->
+<iframe id="music" width="0" height="0"
+src="https://www.youtube.com/embed/4vIQON2fDWM?enablejsapi=1"
+frameborder="0" allow="autoplay"></iframe>
+
+<script>
+const bouquet = document.querySelectorAll('.tulip');
+
+bouquet.forEach(t => {
+    t.innerHTML = `
+        <div class="stem"></div>
+        <div class="leaf left"></div>
+        <div class="leaf right"></div>
+        <div class="petal"></div>
+        <div class="petal left"></div>
+        <div class="petal right"></div>
+    `;
+});
+
+function startExperience() {
+
+    // Bloom one by one
+    bouquet.forEach((tulip, index) => {
         setTimeout(() => {
-            for (let i = 0; i < 10; i++) {
-                setTimeout(createPetals, i * 200);
-            }
-        }, 1000);
-    </script>
+            tulip.classList.add('bloom');
+        }, index * 400);
+    });
+
+    // Show message
+    setTimeout(() => {
+        document.getElementById('message').classList.add('show');
+    }, 2500);
+
+    // Start hearts
+    createHearts();
+
+    // Play music
+    playMusic();
+}
+
+function createHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "❤️";
+
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.top = "100%";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+    }, 300);
+}
+
+function playMusic() {
+    const iframe = document.getElementById("music");
+    iframe.src += "&autoplay=1";
+}
+</script>
+
 </body>
 </html>
